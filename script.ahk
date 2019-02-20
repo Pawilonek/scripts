@@ -30,6 +30,16 @@ F8::
 		   WinActivate, % "ahk_id " . Array%A_Index%
 Return
 
+
+; Print {Spce} even if pressed with alt
+<^>!Space::
+	Send {Space}
+Return
+
+; Caps Lock acts as Shift
+Capslock::Shift
+Return
+
 ; Open console
 F9::
 ^!t::
@@ -38,16 +48,9 @@ F9::
 	WinActivate ahk_class VirtualConsoleClass
 Return
 
-; Print {Spce} even if pressed with alt
-<^>!Space::
-!Space::
-	Send {Space}
-Return
-
-
-; Open console
+; Open Notepad++
 F10::
-	if !WinExist("ahk_class Notepad++")
+	if !WinExist("ahk_class Notepad++")-
 		Run C:\Program Files\Notepad++\notepad++.exe
 	WinActivate ahk_class Notepad++
 Return
@@ -55,10 +58,9 @@ Return
 
 ; Press middle mouse button to move up a folder in Explorer
 #IfWinActive, ahk_class CabinetWClass
-~MButton::Send !{Up} 
+	~MButton::Send !{Up} 
+	Return
 #IfWinActive
-return
-
 
 ; Custom volume buttons
 +NumpadAdd:: Send {Volume_Up} ;shift + numpad plus
@@ -67,19 +69,6 @@ return
 break::Send {Media_Play_Pause} 
 return
 
-
-; #InstallKeybdHook
-; Default state of lock keys
-capslock::return
-
-	;SetNumlockState, AlwaysOn
-	;SetCapsLockState, AlwaysOff
-	;SetScrollLockState, AlwaysOff
-;return
-
-; Caps Lock acts as Shift
-;Capslock::Shift
-;return
 
 
 ;^+g::			; Control+Shift+G: Google Search from Anywhere
