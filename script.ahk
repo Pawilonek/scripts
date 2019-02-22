@@ -79,3 +79,16 @@ if ErrorLevel
 else
     Run https://www.google.com/search?q=%SearchTerm%
 return
+
+;;;;
+; In progrgess
+;;;;
+
+; i3
+^+g::			; Control+Shift+G
+	Run, C:\bin\i3.vbs
+	WinWait, ahk_class VcXsrv/x
+	WinActivate
+	WinMove A,, A_ScreenWidth+50, 10, A_ScreenWidth-20, A_ScreenHeight-20
+	WinMove A,, 0, 0, A_ScreenWidth/2, A_ScreenHeight
+return
