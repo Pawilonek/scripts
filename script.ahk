@@ -1,3 +1,7 @@
+; ^ ctrl
+; + shitf
+; ! alt
+
 ; Close Command Prompt when pressing Ctrl+D
 #If WinActive("cmd ahk_class VirtualConsoleClass") || WinActive("ahk_class ConsoleWindowClass")
   ^d::
@@ -48,14 +52,6 @@ F9::
 	WinActivate ahk_class VirtualConsoleClass
 Return
 
-; Open Notepad++
-F10::
-	if !WinExist("ahk_class Notepad++")-
-		Run C:\Program Files\Notepad++\notepad++.exe
-	WinActivate ahk_class Notepad++
-Return
-
-
 ; Press middle mouse button to move up a folder in Explorer
 #IfWinActive, ahk_class CabinetWClass
 	~MButton::Send !{Up} 
@@ -70,7 +66,6 @@ break::Send {Media_Play_Pause}
 return
 
 
-
 ;^+g::			; Control+Shift+G: Google Search from Anywhere
 F3::
 InputBox, SearchTerm, Searh in Google, , Width, Height,  120, 200
@@ -80,15 +75,46 @@ else
     Run https://www.google.com/search?q=%SearchTerm%
 return
 
+
+; Open Notepad++
+<#1:: ; Left WinKey + 1
+>#1:: ; Right WinKey + 1
+	if !WinExist("ahk_class Notepad++") {
+		Run C:\Program Files\Notepad++\notepad++.exe
+	} else if !WinActive("ahk_class Notepad++") {
+		WinActivate ahk_class Notepad++
+	} else {
+		Send, ^{Tab}
+	}
+Return
+
+; Chrome
+<#2:: ; Left WinKey + 2
+>#2:: ; Right WinKey + 2
+	if !WinExist("ahk_class Chrome_WidgetWin_1")
+		Run chrome
+	else if !WinActive("ahk_class Chrome_WidgetWin_1")
+		WinActivate ahk_class Chrome_WidgetWin_1
+	else
+		Send, ^{Tab}
+return
+
+; i3 
+<#3:: ; Left WinKey + 3
+>#3:: ; Right WinKey + 3
+	if !WinExist("ahk_class VcXsrv/x") {
+		Run, %A_scriptDir%\i3.vbs
+		WinWait, ahk_class VcXsrv/x
+		WinActivate
+		Send, {LWin Down}{LShift Down}{RIGHT}{LShift Up}{LWin Up}
+		WinMinimize, ahk_class VcXsrv/x
+		Send, !{Tab}
+	} else {
+		WinActivate ahk_class VcXsrv/x
+	}
+return
+
+
 ;;;;
 ; In progrgess
 ;;;;
-
-; i3
-^+g::			; Control+Shift+G
-	Run, C:\bin\i3.vbs
-	WinWait, ahk_class VcXsrv/x
-	WinActivate
-	WinMove A,, A_ScreenWidth+50, 10, A_ScreenWidth-20, A_ScreenHeight-20
-	WinMove A,, 0, 0, A_ScreenWidth/2, A_ScreenHeight
-return
