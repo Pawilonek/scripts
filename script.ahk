@@ -76,6 +76,16 @@ else
 return
 
 
+
+; Quick notes
+<#`:: ; Left WinKey + `
+>#`:: ; Right WinKey + `
+	if !WinExist("ahk_class Notepad")
+		Run notepad tmp\QuickNotes.txt
+	else
+		WinActivate ahk_class Notepad
+return
+
 ; Open Notepad++
 <#1:: ; Left WinKey + 1
 >#1:: ; Right WinKey + 1
@@ -106,7 +116,8 @@ return
 		Run, %A_scriptDir%\i3.vbs
 		WinWait, ahk_class VcXsrv/x
 		WinActivate
-		Send, {LWin Down}{LShift Down}{RIGHT}{LShift Up}{LWin Up}
+		Send, {LWin Down}{LShift Down}{LEFT}{LShift Up}{LWin Up}
+		WinMaximize, ahk_class VcXsrv/x
 		WinMinimize, ahk_class VcXsrv/x
 		Send, !{Tab}
 	} else {
