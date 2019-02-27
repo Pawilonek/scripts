@@ -13,7 +13,6 @@ IF NOT EXIST "tmp" (
 )
 
 type NUL >> tmp\QuickNotes.txt
-exit /B 0
 
 echo [Run AutoHotKey scripts]
 start script.ahk
