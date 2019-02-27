@@ -81,22 +81,20 @@ return
 	Run C:\bin\bogdan-screen.bat
 return
 
-
-; Quick notes
+; Quick notes (todo list)
 <#`:: ; Left WinKey + `
 >#`:: ; Right WinKey + `
-	if !WinExist("ahk_class Notepad") {
-		Run notepad tmp\QuickNotes.txt
-		WinWait, ahk_class Notepad
-		WinActivate
-		; WinSet, Style, -0xC40000, A ; When I want to hide the borders completely I always use this:
-		; WinSet, Style, -0xC00000, A ; Or if you want a border around it you could do:
-		WinSetTitle, Quick Notes
-		; to read: https://autohotkey.com/board/topic/11976-menubar-hiding/
-		DllCall("SetMenu", uint, WinExist(), uint, 0)  ; Remove menu bar of "last found window".
-		Gui, -MaximizeBox  ; Change the settings of the default GUI window.
+	if !WinExist("QuickNotes") {
+		WinShow QuickNotes ; May by already hidden by this script
+		Run, "code" %A_WorkingDir%\todo.code-workspace %A_WorkingDir%\tmp\notes.todo, %A_WorkingDir%, Hide
+		; Workspace configuration has set title to: QuickNotes
+		WinWait, QuickNotes
+		WinActivate, QuickNotes
+	} else if !WinActive("QuickNotes") {
+		WinShow QuickNotes
+		WinActivate QuickNotes
 	} else {
-		WinActivate ahk_class Notepad
+		WinHide QuickNotes
 	}
 return
 
