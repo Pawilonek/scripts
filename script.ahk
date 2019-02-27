@@ -76,14 +76,28 @@ else
 return
 
 
+; Bogdan screenshot
+^PrintScreen:: ; ctrl + PrintScreen
+	Run C:\bin\bogdan-screen.bat
+return
+
 
 ; Quick notes
 <#`:: ; Left WinKey + `
 >#`:: ; Right WinKey + `
-	if !WinExist("ahk_class Notepad")
+	if !WinExist("ahk_class Notepad") {
 		Run notepad tmp\QuickNotes.txt
-	else
+		WinWait, ahk_class Notepad
+		WinActivate
+		; WinSet, Style, -0xC40000, A ; When I want to hide the borders completely I always use this:
+		; WinSet, Style, -0xC00000, A ; Or if you want a border around it you could do:
+		WinSetTitle, Quick Notes
+		; to read: https://autohotkey.com/board/topic/11976-menubar-hiding/
+		DllCall("SetMenu", uint, WinExist(), uint, 0)  ; Remove menu bar of "last found window".
+		Gui, -MaximizeBox  ; Change the settings of the default GUI window.
+	} else {
 		WinActivate ahk_class Notepad
+	}
 return
 
 ; Open Notepad++
