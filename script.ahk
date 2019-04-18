@@ -24,14 +24,18 @@ F1::
 	MsgBox ID: %aI% `nClass: %aC% `nTitle: %aT%
 Return
 
-^+v::                            ; Text–only paste from ClipBoard
-   Clip0 = %ClipBoardAll%
-   ClipBoard = %ClipBoard%       ; Convert to text
-   Send ^v                       ; For best compatibility: SendPlay
-   Sleep 50                      ; Don't change clipboard while it is pasted! (Sleep > 0)
-   ClipBoard = %Clip0%           ; Restore original ClipBoard
-   VarSetCapacity(Clip0, 0)      ; Free memory
-Return
+; Text–only paste from ClipBoard (do not use in PhpStorm)
+#If Not WinActive("cmd ahk_class SunAwtFrame")
+	^+v::                            
+	   Clip0 = %ClipBoardAll%
+	   ClipBoard = %ClipBoard%       ; Convert to text
+	   Send ^v                       ; For best compatibility: SendPlay
+	   Sleep 50                      ; Don't change clipboard while it is pasted! (Sleep > 0)
+	   ClipBoard = %Clip0%           ; Restore original ClipBoard
+	   VarSetCapacity(Clip0, 0)      ; Free memory
+	Return
+#IfWinActive
+
 
 ; Switch PhpStorm
 F8::
