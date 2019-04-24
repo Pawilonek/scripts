@@ -143,7 +143,7 @@ return
 		Run, %A_scriptDir%\i3.vbs
 		WinWait, ahk_class VcXsrv/x
 		WinActivate
-		Send, {LWin Down}{LShift Down}{LEFT}{LShift Up}{LWin Up}
+		Send, {LWin Down}{LShift Down}{RIGHT}{LShift Up}{LWin Up}
 		WinMaximize, ahk_class VcXsrv/x
 		WinMinimize, ahk_class VcXsrv/x
 		Send, !{Tab}
