@@ -90,6 +90,13 @@ else
     Run https://www.google.com/search?q=%SearchTerm%
 return
 
+; Send text in clipboard to haste
+<#h:: ; Left WinKey + h
+>#h:: ; Right WinKey + h
+	Send, ^c
+	Run C:\bin\haste.bat
+return
+
 
 ; Bogdan screenshot
 ^PrintScreen:: ; ctrl + PrintScreen
