@@ -81,14 +81,17 @@ break::Send {Media_Play_Pause}
 return
 
 
-;^+g::			; Control+Shift+G: Google Search from Anywhere
-F3::
-InputBox, SearchTerm, Searh in Google, , Width, Height,  120, 200
+;Search for ppl in company
+^+F12:: ; Control+Shift+12
+<#f:: ; Left WinKey + F
+>#f:: ; Right WinKey + F
+InputBox, SearchTerm, Searh PPL in comapny, , Width, Height,  120, 200
 if ErrorLevel
 	Send, ^	; I don't like seeing the Message Box if I cancel, so I sent the CTRL key because nothing happens, which is what I want.
 else
-    Run https://www.google.com/search?q=%SearchTerm%
+    Run https://g2ahub.sharepoint.com/search/Strony/peopleresults.aspx?k=%SearchTerm%
 return
+
 
 ; Send text in clipboard to haste
 <#h:: ; Left WinKey + h
@@ -150,10 +153,9 @@ return
 		Run, %A_scriptDir%\i3.vbs
 		WinWait, ahk_class VcXsrv/x
 		WinActivate
-		Send, {LWin Down}{LShift Down}{RIGHT}{LShift Up}{LWin Up}
-		WinMaximize, ahk_class VcXsrv/x
-		WinMinimize, ahk_class VcXsrv/x
-		Send, !{Tab}
+		Send, {LWin Down}{LShift Down}{LEFT}{LShift Up}{LWin Up}
+		;WinMinimize, ahk_class VcXsrv/x
+		;Send, !{Tab}
 	} else {
 		WinActivate ahk_class VcXsrv/x
 	}
