@@ -59,19 +59,7 @@ Return
 Capslock::Shift
 Return
 
-; Open console
-F9::
-^!t::
-	if !WinExist("ahk_class VirtualConsoleClass")
-		Run C:\Program Files\ConEmu\ConEmu64.exe /dir "E:\Projects"
-	WinActivate ahk_class VirtualConsoleClass
-Return
 
-; Press middle mouse button to move up a folder in Explorer
-#IfWinActive, ahk_class CabinetWClass
-	~MButton::Send !{Up} 
-	Return
-#IfWinActive
 
 ; Custom volume buttons
 +NumpadAdd:: Send {Volume_Up} ;shift + numpad plus
@@ -101,10 +89,6 @@ return
 return
 
 
-; Bogdan screenshot
-^PrintScreen:: ; ctrl + PrintScreen
-	Run C:\bin\bogdan-screen.bat
-return
 
 ; Quick notes (todo list)
 <#`:: ; Left WinKey + `
@@ -146,16 +130,10 @@ Return
 		Send, ^{Tab}
 return
 
-; i3 
-<#3:: ; Left WinKey + 3
->#3:: ; Right WinKey + 3
+; Open console
+^!t:: ; crtl + alt + t
 	if !WinExist("ahk_class VcXsrv/x") {
 		Run, %A_scriptDir%\i3.vbs
-		WinWait, ahk_class VcXsrv/x
-		WinActivate
-		Send, {LWin Down}{LShift Down}{LEFT}{LShift Up}{LWin Up}
-		;WinMinimize, ahk_class VcXsrv/x
-		;Send, !{Tab}
 	} else {
 		WinActivate ahk_class VcXsrv/x
 	}

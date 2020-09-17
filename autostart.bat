@@ -16,6 +16,7 @@ type NUL >> tmp\QuickNotes.txt
 
 echo [Run AutoHotKey scripts]
 start script.ahk
+start keyboard.ahk
 echo [OK]
 
 
