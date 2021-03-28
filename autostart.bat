@@ -4,19 +4,16 @@ echo [Update scripts repository]
 git pull
 echo [Ok]
 
-echo [Create tmp directory]
-IF NOT EXIST "tmp" (
-    mkdir tmp
+echo [Create cache directory]
+IF NOT EXIST ".cache" (
+    mkdir .cache
+	attrib +h .cache
     echo [Ok]
 ) ELSE (
     echo [Already exists]
 )
 
-type NUL >> tmp\QuickNotes.txt
-
 echo [Run AutoHotKey scripts]
 start script.ahk
-start keyboard.ahk
 echo [OK]
-
 

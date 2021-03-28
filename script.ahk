@@ -133,7 +133,7 @@ return
 ; Open console
 ^!t:: ; crtl + alt + t
 	if !WinExist("ahk_class VcXsrv/x") {
-		Run, %A_scriptDir%\i3.vbs
+		Run, %A_scriptDir%\i3\i3.vbs
 	} else {
 		WinActivate ahk_class VcXsrv/x
 	}
