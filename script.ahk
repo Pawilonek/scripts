@@ -3,6 +3,10 @@
 ; ^ ctrl
 ; + shitf
 ; ! alt
+; # windows
+
+^#r::Reload ; ctrl + win + r
+
 
 ; Close Command Prompt when pressing Ctrl+D
 #If WinActive("cmd ahk_class VirtualConsoleClass") || WinActive("ahk_class ConsoleWindowClass")
@@ -138,6 +142,13 @@ return
 		WinActivate ahk_class VcXsrv/x
 	}
 return
+
+
+; Send Meh 😒
+^m:: ; ctrl + m
+	Send, Meh {U+1F612} {enter}
+return
+
 
 
 ;;;;
