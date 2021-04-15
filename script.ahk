@@ -95,21 +95,28 @@ return
 
 
 ; Quick notes (todo list)
-<#`:: ; Left WinKey + `
->#`:: ; Right WinKey + `
-	if !WinExist("QuickNotes") {
-		WinShow QuickNotes ; May by already hidden by this script
-		Run, "code" %A_WorkingDir%\todo.code-workspace %A_WorkingDir%\tmp\notes.todo, %A_WorkingDir%, Hide
-		; Workspace configuration has set title to: QuickNotes
-		WinWait, QuickNotes
-		WinActivate, QuickNotes
-	} else if !WinActive("QuickNotes") {
-		WinShow QuickNotes
-		WinActivate QuickNotes
-	} else {
-		WinHide QuickNotes
-	}
-return
+;<#`:: ; Left WinKey + `
+;>#`:: ; Right WinKey + `
+;	if !WinExist("QuickNotes") {
+;		WinShow QuickNotes ; May by already hidden by this script
+;		Run, "code" %A_WorkingDir%\todo.code-workspace %A_WorkingDir%\tmp\notes.todo, %A_WorkingDir%, Hide
+;		; Workspace configuration has set title to: QuickNotes
+;		WinWait, QuickNotes
+;		WinActivate, QuickNotes
+;	} else if !WinActive("QuickNotes") {
+;		WinShow QuickNotes
+;		WinActivate QuickNotes
+;	} else {
+;		WinHide QuickNotes
+;	}
+;return
+
+
+; Quick notes - Open Typora with notes
+; Windows + `
+#`:: ; Left WinKey + `
+	Run "C:\Program Files\Typora\Typora.exe" "C:\Users\pawel.kaminski\OneDrive - Tech Sp. z o.o\notes.txt"
+Return
 
 ; Open Notepad++
 <#1:: ; Left WinKey + 1
